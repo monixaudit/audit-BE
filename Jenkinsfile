@@ -37,21 +37,27 @@ pipeline {
             }
         }
 
+        // stage('Verify JAR') {
+
+        //     steps {
+
+        //         bat """
+        //             if not exist "%JAR_FILE%" (
+        //                 echo JAR file not found
+        //                 exit /b 1
+        //             )
+
+        //             echo JAR found:
+        //             dir "%JAR_FILE%"
+        //         """
+        //     }
+        // }
+
         stage('Verify JAR') {
-
-            steps {
-
-                bat """
-                    if not exist "%JAR_FILE%" (
-                        echo JAR file not found
-                        exit /b 1
-                    )
-
-                    echo JAR found:
-                    dir "%JAR_FILE%"
-                """
-            }
-        }
+    steps {
+        bat 'dir target'
+    }
+}
 
         stage('Upload JAR to S3') {
 
